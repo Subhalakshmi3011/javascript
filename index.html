@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">-->
+   <style type="text/css">
+       table {
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid black;
+}
+
+th, td {
+  text-align: left;
+  background-color: white;
+   border-bottom: 1px solid black;
+  padding: 16px;
+}
+th,tr {
+  text-align: left;
+  background-color: lightgrey;
+  padding: 16px;
+}
+
+   </style>
+</head>
+<body>
+
+    <div class="table-container">
+        <label>Search:</label><input type="text" onkeyup="filter(event)">
+        <table id="easy-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Tamil</th>
+                    <th>English</th>
+                    <th>Maths</th>
+                    <th>Science</th>
+                    <th>Social</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div id="paginator"></div>
+        <tr>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // dummy data
+        const NAMES = ['Paul', 'Anne', 'Benji', 'Carl', 'Sarah', 'steeve','Blessy','Jeba','Anusiya','Abirami','Durga', ];
+        const TAMIL = ['93', '95', '98', '87', '86', '94', '55', '88','77', '63'];
+        const ENGLISH = ['89', '78', '79', '63', '98', '56', '48','95','88','84'];
+
+        let data = [];
+        for(let i = 0; i < 50; i++){
+            let row = { 
+                id: i, 
+                Name: NAMES[Math.floor(Math.random() * 11)], 
+                Tamil: TAMIL[Math.floor(Math.random() * 10)],
+                English: ENGLISH[Math.floor(Math.random() * 10)],
+                Maths: Math.floor(Math.random() * 100 ),
+                Science: Math.floor(Math.random() * 100 ),
+                Social: Math.floor(Math.random() * 99 ),
+            }
+            
+            data.push(row);
+        }
+
+        // required options
+        const options = {
+            tableId:'easy-table',
+            currentPage:1,
+            perPage:10,
+            autoHeaders:true,
+            arrowUp:'⇑',
+            arrowDown:'⇓',
+            previousText:'&#10094',
+            nextText:'&#10095',
+        }
+
+        setTable(data, options);
+
+    </script>
+</body>
+</html>
